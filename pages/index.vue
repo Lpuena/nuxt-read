@@ -1,4 +1,6 @@
 <script setup>
+import CardShow from '~/components/CardShow.vue'
+
 // 获取作者和书籍数据
 const theAuthor = await queryCollection('authors')
   .where('url', '=', 'larbish')
@@ -30,22 +32,7 @@ const books = booksResult[0].meta.books
           <h2 class="mb-4 text-3xl titleColor font-serif">
             名家作品
           </h2>
-          <div
-            class="grid grid-cols-1 gap-6 2xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
-          >
-            <div
-              v-for="book in books"
-              :key="book.title"
-              class="cardBg rounded-lg p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <h3 class="mb-2 text-2xl titleColor font-serif">
-                {{ book.title }}
-              </h3>
-              <p class="textColor2">
-                {{ book.description }}
-              </p>
-            </div>
-          </div>
+          <CardShow :books="books" />
         </div>
 
         <div class="mt-12">
