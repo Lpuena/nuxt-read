@@ -4,9 +4,9 @@
 //   .where('url', '=', 'larbish')
 //   .first()
 
-const authors = await queryCollection('authors')
-  .order('name', 'DESC')
-  .all()
+// const authors = await queryCollection('authors')
+//   .order('name', 'DESC')
+//   .all()
 
 // 获取书籍数据
 // const booksResult = await queryCollection('books').all()
@@ -35,7 +35,7 @@ const { data: booksResult } = await useFetch(`/api/books`)
           <CardShow :books="booksResult.books" />
         </div>
 
-        <div class="mt-12">
+        <!-- <div class="mt-12">
           <h2 class="mb-4 text-3xl font-serif titleColor">
             历代名家
           </h2>
@@ -53,7 +53,7 @@ const { data: booksResult } = await useFetch(`/api/books`)
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
