@@ -7,6 +7,13 @@ defineProps<{
     year: string
   }[]
 }>()
+
+const router = useRouter()
+// 跳转到图书详情页
+function goBook(book: { title: string, description: string, author: string, year: string }) {
+  // 跳转到图书详情页
+  router.push(`/book/${book.title}`)
+}
 </script>
 
 <template>
@@ -16,9 +23,11 @@ defineProps<{
     <div
       v-for="book in books"
       :key="book.title"
-      class="cardBg cursor-pointer rounded-lg px-6 py-4 shadow-sm transition-shadow hover:shadow-md"
+      class="relative transform cursor-pointer rounded-lg px-6 py-4 shadow-sm transition-all duration-300 cardBg"
+      hover="shadow-lg scale-108 -translate-y-1"
+      @click="goBook(book)"
     >
-      <p class="mb-2 text-2xl titleColor font-bold font-serif">
+      <p class="mb-2 text-2xl font-bold font-serif titleColor">
         {{ book.title }}
       </p>
       <p class="textColor2">
