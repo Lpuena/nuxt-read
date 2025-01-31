@@ -1,6 +1,4 @@
 <script setup>
-import CardShow from '~/components/CardShow.vue'
-
 // 获取作者和书籍数据
 const theAuthor = await queryCollection('authors')
   .where('url', '=', 'larbish')
@@ -11,32 +9,34 @@ const authors = await queryCollection('authors')
   .all()
 
 // 获取书籍数据
-const booksResult = await queryCollection('books').all()
+// const booksResult = await queryCollection('books').all()
 
-const books = booksResult[0].meta.books
+// const books = booksResult[0].meta.books
+
+const { data: booksResult } = await useFetch(`/api/books`)
 </script>
 
 <template>
   <div class="min-h-screen">
     <div class="mx-auto max-w-6xl px-4 py-12">
-      <h1 class="mb-8 text-center text-4xl titleColor font-bold font-serif">
+      <h1 class="mb-8 text-center text-4xl font-bold font-serif titleColor">
         古文典籍
       </h1>
 
       <div class="prose-lg max-w-none prose">
-        <p class="text-xl textColor leading-relaxed font-serif">
+        <p class="text-xl leading-relaxed font-serif textColor">
           欢迎来到古文典籍网站，这里汇集了历代经典著作和名家作品。
         </p>
 
         <div class="mt-12">
-          <h2 class="mb-4 text-3xl titleColor font-serif">
+          <h2 class="mb-4 text-3xl font-serif titleColor">
             名家作品
           </h2>
-          <CardShow :books="books" />
+          <CardShow :books="booksResult.books" />
         </div>
 
         <div class="mt-12">
-          <h2 class="mb-4 text-3xl titleColor font-serif">
+          <h2 class="mb-4 text-3xl font-serif titleColor">
             历代名家
           </h2>
           <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 md:grid-cols-2">
