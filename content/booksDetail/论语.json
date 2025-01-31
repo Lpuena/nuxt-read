@@ -1,0 +1,12 @@
+{
+  "id": "lunyu",
+  "title": "论语",
+  "author": "孔子及其弟子",
+  "chapters": [
+    { "id": 1, "chapter": "学而篇" },
+    { "id": 2, "chapter": "为政篇" },
+    { "id": 3, "chapter": "八佾篇" },
+    { "id": 4, "chapter": "里仁篇" },
+    { "id": 5, "chapter": "公冶长篇" }
+  ]
+}

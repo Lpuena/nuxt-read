@@ -21,5 +21,14 @@ export default defineContentConfig({
         year: z.string(),
       }),
     }),
+    booksDetail: defineCollection({
+      type: 'data',
+      source: 'booksDetail/**.json',
+      schema: z.object({
+        id: z.string(),
+        title: z.string(),
+        author: z.string(),
+      }),
+    }),
   },
 })
