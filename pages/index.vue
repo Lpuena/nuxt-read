@@ -1,8 +1,8 @@
 <script setup>
 // 获取作者和书籍数据
-const theAuthor = await queryCollection('authors')
-  .where('url', '=', 'larbish')
-  .first()
+// const theAuthor = await queryCollection('authors')
+//   .where('url', '=', 'larbish')
+//   .first()
 
 const authors = await queryCollection('authors')
   .order('name', 'DESC')
@@ -17,7 +17,7 @@ const { data: booksResult } = await useFetch(`/api/books`)
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="">
     <div class="mx-auto max-w-6xl px-4 py-12">
       <h1 class="mb-8 text-center text-4xl font-bold font-serif titleColor">
         古文典籍

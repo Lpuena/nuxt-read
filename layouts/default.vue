@@ -8,7 +8,7 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bgc">
+  <div class="min-h-screen flex flex-col transition-all duration-300 bgc">
     <AppHeader />
     <main class="mx-auto flex-1 px-4 py-8 container">
       <slot />

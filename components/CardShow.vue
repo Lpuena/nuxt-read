@@ -1,18 +1,15 @@
 <script lang="ts" setup>
+import type { Book } from '~/types/bookTypes'
+
 defineProps<{
-  books: {
-    title: string
-    description: string
-    author: string
-    year: string
-  }[]
+  books: Book[]
 }>()
 
 const router = useRouter()
 // 跳转到图书详情页
 function goBook(book: { title: string, description: string, author: string, year: string }) {
   // 跳转到图书详情页
-  router.push(`/book/${book.title}`)
+  router.push(`/book/${book.title}/chapter/${1}`)
 }
 </script>
 
