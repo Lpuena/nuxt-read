@@ -15,6 +15,9 @@ export default defineNuxtConfig({
     preference: 'system',
     fallback: 'light',
   },
+  nitro: {
+    preset: 'cloudflare-pages',
+  },
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',

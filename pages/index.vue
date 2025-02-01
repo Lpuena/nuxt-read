@@ -16,7 +16,10 @@
 // const { data: booksResult } = await useFetch(`/api/books`)
 
 /** 获取展示书籍数据 */
-const books = await useBooks()
+const booksRes = await useAsyncData('books', useBooks)
+console.log('booksRes', booksRes)
+const books = booksRes.data
+console.log('books', books)
 </script>
 
 <template>
