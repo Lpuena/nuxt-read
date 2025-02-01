@@ -10,7 +10,8 @@ const router = useRouter()
 function goBook(book: Book) {
   // 跳转到图书详情页
   // TODO: 默认跳转到第一章节
-  router.push(`/book/${book.title}/chapter/${1}`)
+  // router.push(`/book/${book.title}/chapter/${1}`)
+  router.push(`/book/${book.title}`)
 }
 </script>
 
@@ -31,7 +32,7 @@ function goBook(book: Book) {
       <p class="textColor2">
         {{ book.description }}
       </p>
-      <div class="flex items-center justify-end">
+      <div class="flex items-center justify-end italic">
         <p class="text-sm text-gray-400/80 dark:text-gray-4/50">
           {{ book.author }}
         </p>

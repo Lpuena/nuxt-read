@@ -43,6 +43,10 @@ export default defineConfig({
       // 卡片背景
       cardBg: 'bg-white dark:bg-[#2d2921]',
     },
+    {
+      // 边框
+      brc: 'border border-[#e0d8c8]',
+    },
   ],
   transformers: [
     transformerDirectives(),

@@ -13,6 +13,7 @@ export interface Body {
   id: string
   title: string
   author: string
+  description: string
   chapters: Chapter[]
 }
 

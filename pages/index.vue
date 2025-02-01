@@ -10,12 +10,12 @@ const books = await useBooks()
 
 <template>
   <div class="">
-    <div class="mx-auto max-w-6xl px-4 py-12">
+    <div class="mx-auto max-w-6xl px-4 pb-10 pt-8">
       <h1 class="mb-8 text-center text-4xl font-bold font-serif titleColor">
         古文典籍
       </h1>
 
-      <div class="prose-lg max-w-none prose">
+      <div class="max-w-none prose">
         <p class="text-xl leading-relaxed font-serif textColor">
           欢迎来到古文典籍网站，这里汇集了历代经典著作和名家作品。
         </p>

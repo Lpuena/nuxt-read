@@ -25,7 +25,7 @@ export async function useBooks() {
 }
 
 /** 获取章节数据 */
-export async function useChapters(bookTitle: string, chapterId: string) {
+export async function useChapters(bookTitle: string, chapterId?: string) {
   const bookRes = await useAsyncData(() => queryCollection('booksDetail')
     .where('title', '=', bookTitle)
     .first())
@@ -35,10 +35,15 @@ export async function useChapters(bookTitle: string, chapterId: string) {
   const body = bookResult.meta.body as Body
 
   const bookId = body.id
+  // 获取章节数据
+  let chapterContent = ['']
+  if (chapterId) {
+    chapterContent = await useChapterContent(bookId, chapterId)
+  }
   return {
     chapters,
     body,
-    chapterContent: await useChapterContent(bookId, chapterId), // 获取章节数据
+    chapterContent,
   }
 }
 
