@@ -7,12 +7,13 @@ const chapterId = route.params.chapterId as string
 // const { data: bookObj } = await useFetch(`/api/books/${title}`)
 // console.log('!!!!!!!!!!', bookObj.value)
 
-const bookObj = await useChapters(title, chapterId)
-console.log('22', bookObj)
+const bookObjRes = await useAsyncData(() => useChapters(title, chapterId))
+// console.log('22', bookObjRes)
+const bookObj = bookObjRes.data.value
 
 /** 章节列表 */
-const chapterList = bookObj.chapters || []
-console.log('chapterList', chapterList)
+const chapterList = bookObj?.chapters || []
+// console.log('chapterList', chapterList)
 
 /** 当前章节的标题 */
 const chapterTitle = chapterList[Number(chapterId) - 1]?.chapter || ''
@@ -21,7 +22,8 @@ const chapterTitle = chapterList[Number(chapterId) - 1]?.chapter || ''
 // const bookId = bookObj.body.id
 // 获取章节内容
 // const { data: chapterRes } = await useFetch(`/api/books/${bookId}/chapters/${chapterId}`)
-console.log('TEST', bookObj.chapterContent)
+
+// console.log('TEST', bookObj.chapterContent)
 </script>
 
 <template>
@@ -43,7 +45,7 @@ console.log('TEST', bookObj.chapterContent)
           </h2>
           <div class="rounded-lg p-6 shadow-sm cardBg">
             <div
-              v-for="(sentence, index) in bookObj.chapterContent"
+              v-for="(sentence, index) in bookObj?.chapterContent"
               :key="index"
               class="heti--ancient mb-4 text-lg textColor"
             >
