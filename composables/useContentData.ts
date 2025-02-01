@@ -9,15 +9,18 @@ import type { Body, Book, BookContent, Chapter } from '~/types/bookTypes'
 /** 获取书籍数据 */
 export async function useBooks() {
   const booksRes = await useAsyncData (() => queryCollection('books').all())
+  console.log('booksRes:', booksRes)
+
   const booksResult = booksRes.data.value || []
   return booksResult[0].meta.books as Book[]
 }
 
 /** 获取章节数据 */
 export async function useChapters(bookTitle: string, chapterId: string) {
-  const bookResult = await queryCollection('booksDetail')
+  const bookRes = await useAsyncData(() => queryCollection('booksDetail')
     .where('title', '=', bookTitle)
-    .first()
+    .first())
+  const bookResult = bookRes.data.value || { meta: { chapters: [], body: {} } }
 
   const chapters = bookResult.meta.chapters as Chapter[]
   const body = bookResult.meta.body as Body
