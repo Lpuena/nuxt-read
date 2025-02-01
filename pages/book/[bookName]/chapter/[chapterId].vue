@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const route = useRoute()
+const router = useRouter()
 const title = route.params.bookName as string
 const chapterId = route.params.chapterId as string
 
@@ -51,6 +52,27 @@ const chapters = chapterList.map((item, index) => ({
               {{ sentence }}
             </div>
           </div>
+        </div>
+      </div>
+      <!-- 添加下一章上一章按钮 -->
+      <div class="mt-12 flex items-center justify-between">
+        <div>
+          <button
+            v-if="Number(chapterId) > 1"
+            class="focus:shadow-outline-blue border border-transparent rounded-lg bg-blue-600 px-4 py-2 text-sm text-white font-medium leading-5 transition-colors duration-150 active:bg-blue-600 hover:bg-blue-700 focus:outline-none"
+            @click="router.push(`/book/${title}/chapter/${Number(chapterId) - 1}`)"
+          >
+            上一章
+          </button>
+        </div>
+        <div>
+          <button
+            v-if="Number(chapterId) < chapterList.length"
+            class="focus:shadow-outline-blue border border-transparent rounded-lg bg-blue-600 px-4 py-2 text-sm text-white font-medium leading-5 transition-colors duration-150 active:bg-blue-600 hover:bg-blue-700 focus:outline-none"
+            @click="router.push(`/book/${title}/chapter/${Number(chapterId) + 1}`)"
+          >
+            下一章
+          </button>
         </div>
       </div>
     </div>
