@@ -8,11 +8,11 @@ import type { Body, Book, BookContent, Chapter } from '~/types/bookTypes'
 
 /** 获取书籍数据 */
 export async function useBooks() {
-  const booksRes = await useAsyncData (() => queryCollection('books').all())
+  const booksRes = await useAsyncData (() => queryCollection('books').first())
   console.log('booksRes:', booksRes)
 
-  const booksResult = booksRes.data.value || []
-  return booksResult[0].meta.books as Book[]
+  const booksResult = booksRes.data.value || { meta: { books: [] } }
+  return booksResult.meta.books as Book[]
 }
 
 /** 获取章节数据 */
