@@ -7,9 +7,7 @@ const chapterId = route.params.chapterId as string
 // const { data: bookObj } = await useFetch(`/api/books/${title}`)
 // console.log('!!!!!!!!!!', bookObj.value)
 
-const bookObjRes = await useAsyncData(() => useChapters(title, chapterId))
-// console.log('22', bookObjRes)
-const bookObj = bookObjRes.data.value
+const bookObj = await useChapters(title, chapterId)
 
 /** 章节列表 */
 const chapterList = bookObj?.chapters || []
@@ -17,13 +15,6 @@ const chapterList = bookObj?.chapters || []
 
 /** 当前章节的标题 */
 const chapterTitle = chapterList[Number(chapterId) - 1]?.chapter || ''
-
-/** 当前书籍的id */
-// const bookId = bookObj.body.id
-// 获取章节内容
-// const { data: chapterRes } = await useFetch(`/api/books/${bookId}/chapters/${chapterId}`)
-
-// console.log('TEST', bookObj.chapterContent)
 </script>
 
 <template>

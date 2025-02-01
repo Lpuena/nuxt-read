@@ -15,9 +15,6 @@ export default defineNuxtConfig({
     preference: 'system',
     fallback: 'light',
   },
-  nitro: {
-    preset: 'cloudflare-pages',
-  },
   app: {
     baseURL: '/nuxt-read/',
     head: {
