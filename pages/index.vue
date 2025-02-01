@@ -4,29 +4,16 @@
 //   .where('url', '=', 'larbish')
 //   .first()
 
-// const authors = await queryCollection('authors')
-//   .order('name', 'DESC')
-//   .all()
-
-// 获取书籍数据
-// const booksResult = await queryCollection('books').all()
-
-// const books = booksResult[0].meta.books
-
-// const { data: booksResult } = await useFetch(`/api/books`)
-
 /** 获取展示书籍数据 */
 const { data } = await useAsyncData('books', () => {
   return queryCollection('books').first()
 })
-console.log('booksRes', data.value)
+// console.log('booksRes', data.value)
 
 let books: any[] = []
 if (data.value) {
   books = data.value.meta.books
 }
-// const books = booksRes.data
-// console.log('books', books)
 </script>
 
 <template>
@@ -45,6 +32,7 @@ if (data.value) {
           <h2 class="mb-4 text-3xl font-serif titleColor">
             名家作品
           </h2>
+          {{ data }}
           <CardShow :books="books" />
         </div>
 
