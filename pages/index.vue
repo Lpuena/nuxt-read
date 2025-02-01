@@ -5,14 +5,16 @@
 //   .first()
 
 /** 获取展示书籍数据 */
-const { data } = await useAsyncData('books', () => {
+const { data,refresh } = await useAsyncData('books', () => {
   return queryCollection('books').first()
 })
-// console.log('booksRes', data.value)
+console.log('booksRes', data.value)
 
 let books: any[] = []
 if (data.value) {
   books = data.value.meta.books
+}else{
+  refresh()
 }
 </script>
 
