@@ -9,7 +9,7 @@
     <div class="py-6">
       <div class="mx-auto px-4 container">
         <p class="tgc text-center">
-          &copy; 2024 Your Company. All rights reserved.
+          Copyright © 2025 Lpuena - MIT License 
         </p>
       </div>
     </div>

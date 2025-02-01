@@ -15,14 +15,22 @@ const chapterList = bookObj?.chapters || []
 
 /** 当前章节的标题 */
 const chapterTitle = chapterList[Number(chapterId) - 1]?.chapter || ''
+
+// 转换章节数据格式
+const chapters = chapterList.map((item, index) => ({
+  id: String(index + 1),
+  title: item.chapter,
+}))
 </script>
 
 <template>
   <div class="">
-    <div class="mx-auto max-w-6xl px-4 py-10">
+    <div class="mx-auto max-w-6xl px-4 pb-10">
       <h1 class="mb-8 text-center text-4xl font-bold font-serif titleColor">
         {{ title }}
       </h1>
+
+      <TableOfContents :chapters="chapters" :title="title" />
 
       <!-- 显示当前章节名称 -->
       <div class="mb-8 text-center text-2xl font-serif titleColor">

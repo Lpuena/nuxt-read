@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@unocss/nuxt', '@nuxtjs/color-mode', '@nuxt/content'],
+  modules: [
+    '@nuxt/eslint',
+    '@unocss/nuxt',
+    '@nuxtjs/color-mode',
+    '@nuxt/content',
+    '@vueuse/nuxt',
+  ],
   css: [
     '@unocss/reset/tailwind.css',
     'heti/umd/heti.min.css',
