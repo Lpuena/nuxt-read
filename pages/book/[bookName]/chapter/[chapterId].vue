@@ -25,7 +25,7 @@ const chapters = chapterList.map((item, index) => ({
 
 <template>
   <div class="">
-    <div class="mx-auto max-w-6xl px-4 pb-10">
+    <div class="mx-auto max-w-7xl px-4 pb-10">
       <h1 class="mb-8 text-center text-4xl font-bold font-serif titleColor">
         {{ title }}
       </h1>

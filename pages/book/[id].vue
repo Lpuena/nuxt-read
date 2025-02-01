@@ -17,7 +17,7 @@ function goBook(chapterId: number) {
 
 <template>
   <div>
-    <div class="mx-auto max-w-6xl px-4 pb-10 pt-8">
+    <div class="mx-auto max-w-7xl px-4 pb-10 pt-8">
       <!-- 书籍标题 -->
       <h1 class="mb-8 text-center text-4xl font-bold font-serif titleColor">
         {{ title }}

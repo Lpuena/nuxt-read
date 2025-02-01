@@ -10,7 +10,7 @@ const books = await useBooks()
 
 <template>
   <div class="">
-    <div class="mx-auto max-w-6xl px-4 pb-10 pt-8">
+    <div class="mx-auto max-w-7xl px-4 pb-10 pt-8">
       <h1 class="mb-8 text-center text-4xl font-bold font-serif titleColor">
         古文典籍
       </h1>
