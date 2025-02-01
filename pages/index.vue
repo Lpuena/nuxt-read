@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // 获取作者和书籍数据
 // const theAuthor = await queryCollection('authors')
 //   .where('url', '=', 'larbish')
@@ -16,10 +16,17 @@
 // const { data: booksResult } = await useFetch(`/api/books`)
 
 /** 获取展示书籍数据 */
-const booksRes = await useAsyncData('books', useBooks)
-console.log('booksRes', booksRes)
-const books = booksRes.data
-console.log('books', books)
+const { data } = await useAsyncData('books', () => {
+  return queryCollection('books').first()
+})
+console.log('booksRes', data.value)
+
+let books: any[] = []
+if (data.value) {
+  books = data.value.meta.books
+}
+// const books = booksRes.data
+// console.log('books', books)
 </script>
 
 <template>
