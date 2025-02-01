@@ -7,6 +7,10 @@
 /** 获取展示书籍数据 */
 const { data, refresh } = await useAsyncData('books', () => {
   return queryCollection('books').first()
+}, {
+  // 确保服务端渲染时等待数据
+  server: true,
+  immediate: true,
 })
 console.log('booksRes', data.value)
 
