@@ -5,25 +5,7 @@
 //   .first()
 
 /** 获取展示书籍数据 */
-const { data, refresh } = await useAsyncData('books', () => {
-  return queryCollection('books').first()
-}, {
-  // 确保服务端渲染时等待数据
-  server: true,
-  immediate: true,
-})
-console.log('booksRes', data.value)
-
-let books: any[] = []
-if (data.value) {
-  books = data.value.meta.books
-}
-else {
-  refresh()
-}
-watch(data, () => {
-  console.log('books', books)
-})
+const books = await useBooks()
 </script>
 
 <template>
@@ -42,7 +24,7 @@ watch(data, () => {
           <h2 class="mb-4 text-3xl font-serif titleColor">
             名家作品
           </h2>
-          {{ data }}
+
           <CardShow :books="books" />
         </div>
 
