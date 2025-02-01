@@ -7,8 +7,9 @@ defineProps<{
 
 const router = useRouter()
 // 跳转到图书详情页
-function goBook(book: { title: string, description: string, author: string, year: string }) {
+function goBook(book: Book) {
   // 跳转到图书详情页
+  // TODO: 默认跳转到第一章节
   router.push(`/book/${book.title}/chapter/${1}`)
 }
 </script>

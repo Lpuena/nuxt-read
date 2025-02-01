@@ -1,24 +1,27 @@
 <script lang="ts" setup>
 const route = useRoute()
-const title = route.params.bookName
+const title = route.params.bookName as string
 const chapterId = route.params.chapterId as string
 
 // 获取章节列表
-const { data: bookObj } = await useFetch(`/api/books/${title}`)
-console.log('!!!!!!!!!!', bookObj.value)
+// const { data: bookObj } = await useFetch(`/api/books/${title}`)
+// console.log('!!!!!!!!!!', bookObj.value)
+
+const bookObj = await useChapters(title, chapterId)
+console.log('22', bookObj)
 
 /** 章节列表 */
-const chapterList = bookObj.value?.chapters || []
+const chapterList = bookObj.chapters || []
 console.log('chapterList', chapterList)
 
 /** 当前章节的标题 */
 const chapterTitle = chapterList[Number(chapterId) - 1]?.chapter || ''
 
 /** 当前书籍的id */
-const bookId = bookObj.value?.body.id
+// const bookId = bookObj.body.id
 // 获取章节内容
-const { data: chapterRes } = await useFetch(`/api/books/${bookId}/chapters/${chapterId}`)
-console.log('TEST', chapterRes.value)
+// const { data: chapterRes } = await useFetch(`/api/books/${bookId}/chapters/${chapterId}`)
+console.log('TEST', bookObj.chapterContent)
 </script>
 
 <template>
@@ -40,7 +43,7 @@ console.log('TEST', chapterRes.value)
           </h2>
           <div class="rounded-lg p-6 shadow-sm cardBg">
             <div
-              v-for="(sentence, index) in chapterRes?.chapterContent"
+              v-for="(sentence, index) in bookObj.chapterContent"
               :key="index"
               class="heti--ancient mb-4 text-lg textColor"
             >

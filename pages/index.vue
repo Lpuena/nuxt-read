@@ -13,7 +13,10 @@
 
 // const books = booksResult[0].meta.books
 
-const { data: booksResult } = await useFetch(`/api/books`)
+// const { data: booksResult } = await useFetch(`/api/books`)
+
+const books = await useBooks()
+console.log('1', books)
 </script>
 
 <template>
@@ -32,7 +35,7 @@ const { data: booksResult } = await useFetch(`/api/books`)
           <h2 class="mb-4 text-3xl font-serif titleColor">
             名家作品
           </h2>
-          <CardShow :books="booksResult.books" />
+          <CardShow :books="books" />
         </div>
 
         <!-- <div class="mt-12">
