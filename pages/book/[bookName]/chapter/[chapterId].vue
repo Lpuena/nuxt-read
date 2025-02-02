@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const route = useRoute()
-const router = useRouter()
+
 const title = route.params.bookName as string
 const chapterId = route.params.chapterId as string
 
@@ -53,7 +53,7 @@ const chapters = chapterList.map((item, index) => ({
         </div>
       </div>
 
-      <!-- 添加下一章上一章按钮 -->
+      <!-- 翻页组件 -->
       <ChapterNavigation :title="title" :chapter-list="chapterList" :chapter-id="chapterId" />
     </div>
   </div>
