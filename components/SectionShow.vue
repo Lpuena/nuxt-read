@@ -15,7 +15,7 @@ function goBook(chapterId: number) {
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-4 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3">
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3">
     <div
       v-for="chapter in section.chapters"
       :key="chapter.id"
