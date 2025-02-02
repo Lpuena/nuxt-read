@@ -10,6 +10,9 @@ const router = useRouter()
 function goChapter(id: number) {
   router.push(`/book/${props.title}/chapter/${Number(props.chapterId) + id}`)
 }
+function goChapterList() {
+  router.push(`/book/${props.title}`)
+}
 
 // 键盘方向键来控制翻页
 function handleKeyDown(event: KeyboardEvent) {
@@ -46,7 +49,11 @@ onUnmounted(() => {
       <span class="ml-2 border-b border-transparent text-lg group-hover:brcB">上卷</span>
     </a>
 
-    <div class="text-sm tgc">
+    <div
+      class="cursor-pointer text-sm tgc"
+      hover="textColor2 brcB"
+      @click="goChapterList"
+    >
       // 卷{{ chapterId }}，共{{ chapterList.length }}卷 //
     </div>
 

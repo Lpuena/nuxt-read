@@ -24,7 +24,7 @@ function goBook(chapterId: number) {
     >
       <!-- 装饰性竖线 -->
       <div
-        class="absolute left-3 top-1/2 h-4/5 w-1px bg-amber-200/30 group-hover:h-3/5 -translate-y-1/2"
+        class="absolute left-3 top-1/2 h-4/5 w-1px bg-amber-300/50 group-hover:h-3/5 -translate-y-1/2 dark:bg-amber-200/30"
         transition
       />
 
