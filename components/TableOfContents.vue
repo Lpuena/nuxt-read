@@ -89,6 +89,7 @@ onUnmounted(() => {
                   ]"
                   @click.stop
                 >
+                  <span class="mr-1">{{ chapter.id }}.</span>
                   {{ chapter.chapterTitle }}
                 </NuxtLink>
               </li>
