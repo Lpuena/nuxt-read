@@ -2,7 +2,7 @@
   "id": "lunyu",
   "title": "论语",
   "author": "孔子及其弟子",
-  "description": "《论语》是春秋时期思想家、教育家孔子的弟子及再传弟子记录孔子及其弟子言行而编成的语录文集，成书于战国前期。",
+  "description": "《论语》是儒家学派的经典著作之一，由孔子的弟子及其再传弟子编撰而成。它以语录体和对话文体为主，记录了孔子及其弟子言行，集中体现了孔子的政治主张、伦理思想、道德观念及教育原则等。与《大学》《中庸》《孟子》《诗经》《尚书》《礼记》《易经》《春秋》并称“四书五经”。通行本《论语》共二十篇。",
   "sections": [
     {
       "type": "正文",
@@ -11,7 +11,22 @@
         { "id": 2, "chapterTitle": "为政篇" },
         { "id": 3, "chapterTitle": "八佾篇" },
         { "id": 4, "chapterTitle": "里仁篇" },
-        { "id": 5, "chapterTitle": "公冶长篇" }
+        { "id": 5, "chapterTitle": "公冶长篇" },
+        { "id": 6, "chapterTitle": "雍也篇" },
+        { "id": 7, "chapterTitle": "述而篇" },
+        { "id": 8, "chapterTitle": "泰伯篇" },
+        { "id": 9, "chapterTitle": "子罕篇" },
+        { "id": 10, "chapterTitle": "乡党篇" },
+        { "id": 11, "chapterTitle": "先进篇" },
+        { "id": 12, "chapterTitle": "颜渊篇" },
+        { "id": 13, "chapterTitle": "子路篇" },
+        { "id": 14, "chapterTitle": "宪问篇" },
+        { "id": 15, "chapterTitle": "卫灵公篇" },
+        { "id": 16, "chapterTitle": "季氏篇" },
+        { "id": 17, "chapterTitle": "阳货篇" },
+        { "id": 18, "chapterTitle": "微子篇" },
+        { "id": 19, "chapterTitle": "子张篇" },
+        { "id": 20, "chapterTitle": "尧曰篇" }
       ]
     }
   ]
