@@ -45,7 +45,14 @@ export default defineConfig({
     },
     {
       // 边框
-      brc: 'border border-[#e0d8c8]',
+      brc: 'border border-[#e0d8c8] dark:border-[#3a3429]',
+      brcB: 'border-b border-[#e0d8c8] dark:border-[#3a3429]',
+
+      brw: 'border-l-4 border-[#d4c29c]',
+    },
+    {
+      // 动画过度
+      transition: 'transform transition-all duration-300',
     },
   ],
   transformers: [

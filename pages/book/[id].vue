@@ -33,7 +33,10 @@ function goBook(chapterId: number) {
         <h2 class="mb-4 text-3xl font-serif titleColor">
           书籍简介
         </h2>
-        <div class="mb-12 rounded-lg p-8 shadow-lg cardBg">
+        <div
+          class="mb-12 rounded-lg p-8 shadow-lg cardBg"
+          transition
+        >
           <p class="heti--ancient text-lg leading-relaxed textColor">
             {{ bookDetail?.description }}
           </p>
@@ -41,29 +44,43 @@ function goBook(chapterId: number) {
       </div>
 
       <!-- 目录部分 -->
-      <div>
-        <h2 class="mb-4 text-3xl font-serif titleColor">
+      <div
+        class="mb-12 brc rounded-xl p-8 cardBg"
+        transition
+      >
+        <h2
+          class="brw mb-6 pl-3 text-2xl font-semibold font-serif titleColor"
+          transition
+        >
           书籍目录
         </h2>
-        <div class="mb-12 rounded-lg p-6 shadow-sm cardBg">
-          <div class="grid grid-cols-1 gap-3 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
-            <div
-              v-for="chapter in bookDetail?.chapters"
-              :key="chapter.id"
-              class="rounded-lg transition-all duration-300 ease-out dark:border-[#3a3429] cardBg"
-              brc
-              hover="shadow-md scale-103 -translate-y-1"
 
-              @click="goBook(chapter.id)"
-            >
-              <div class="h-full flex items-center justify-center p-4 text-center">
-                <p class="text-lg transition-colors group-hover:titleColor textColor">
-                  {{ chapter.chapter }}
-                </p>
-              </div>
+        <!-- 经典竖排风格 -->
+        <div
+          class="grid grid-cols-2 gap-4 md:grid-cols-4 sm:grid-cols-3"
+          transition
+        >
+          <div
+            v-for="(chapter, index) in bookDetail?.chapters"
+            :key="index"
+            class="flex flex-col cursor-pointer items-center justify-center brc rounded-lg p-4 text-center"
+            transition
+            hover="shadow-lg scale-103 -translate-y-1"
+            @click="goBook(chapter.id)"
+          >
+            <!-- 章节序号 -->
+            <div class="mb-1 text-lg transition-colors textColor">
+              第{{ index + 1 }}章
+            </div>
+
+            <!-- 章节名称 -->
+            <div class="text-sm tgc">
+              {{ chapter.chapter }}
             </div>
           </div>
         </div>
+
+        <!--  -->
       </div>
     </div>
   </div>
