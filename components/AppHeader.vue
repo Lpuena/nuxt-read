@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const links = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
+  { name: '主页', path: '/' },
+  { name: '关于', path: '/about' },
 ]
 </script>
 
