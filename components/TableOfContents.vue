@@ -37,52 +37,55 @@ onUnmounted(() => {
 
 <template>
   <div>
-    <!-- 触发按钮 -->
+    <!-- 触发按钮 - 更柔和的过渡效果 -->
     <button
       id="toc-btn"
-      class="fixed left-0 top-1/2 z-50 flex transition items-center gap-2 rounded-r-xl px-3 py-4 shadow-lg duration-300 -translate-y-1/2 cardBg brc"
+      class="fixed left-0 top-1/2 z-50 flex transition items-center gap-2 rounded-r-xl px-3.5 py-4 shadow-lg -translate-y-1/2 cardBg brc"
       :class="{ 'opacity-0': isOpen }"
-      hover="border-[#d4c29c] shadow-xl"
+      hover="border-[#d4c29c] shadow-xl bg-opacity-95 dark:bg-opacity-95"
       @click="toggleOpen"
     >
-      <div class="i-carbon-list text-lg titleColor" />
+      <div class="i-carbon-list text-lg textColor2" />
     </button>
 
-    <!-- 目录面板 -->
+    <!-- 目录面板 - 优化视觉层次 -->
     <nav
       id="toc-nav"
-      class="fixed bottom-26 left-4 top-26 z-50 w-70 transform rounded-xl shadow-2xl backdrop-blur-sm transition-all duration-300 ease-out cardBg brc"
-      :class="isOpen ? 'translate-x-0' : '-translate-x-[120%]'"
+      class="fixed bottom-10 left-4 top-18 z-50 w-72 transform rounded-xl shadow-xl backdrop-blur-sm transition-all duration-300 ease-out cardBg brc hover:shadow-2xl"
+      :class="[
+        isOpen ? 'translate-x-0' : '-translate-x-[120%]',
+      ]"
     >
       <div class="h-full flex flex-col p-6">
-        <!-- 标题栏 -->
+        <!-- 标题栏 - 更清晰的层次 -->
         <div class="flex items-center justify-between pb-4 brcB">
           <h3 class="text-lg font-bold titleColor">
             {{ title }}
           </h3>
           <button
-            class="transition rounded-lg p-1.5 duration-200 hover:bg-[#f5f2e9] dark:hover:bg-[#2d2921]"
+            class="transition rounded-lg p-1.5 duration-200"
+            hover="bg-[#d4c29c]/10"
             @click="toggleOpen"
           >
-            <div class="i-carbon-close text-lg titleColor" />
+            <div class="i-carbon-close text-lg textColor2" />
           </button>
         </div>
 
-        <!-- 章节列表 -->
-        <div class="mt-4 flex-1 overflow-y-auto pr-2">
-          <div v-for="section in sections" :key="section.type" class="mb-4">
-            <h4 class="text-sm font-bold titleColor">
+        <!-- 章节列表 - 优化间距和hover效果 -->
+        <div class="mt-5 flex-1 overflow-y-auto pr-2">
+          <div v-for="section in sections" :key="section.type" class="mb-6">
+            <h4 class="mb-2 text-sm font-bold textColor2">
               {{ section.type }}
             </h4>
-            <ul class="space-y-1">
+            <ul class="space-y-1.5">
               <li v-for="chapter in section.chapters" :key="chapter.id">
                 <NuxtLink
                   :to="`/book/${title}/chapter/${chapter.id}`"
-                  class="block transition rounded-lg px-4 py-2.5 text-sm duration-200 hover:bg-[#f5f2e9] textColor dark:hover:bg-[#2d2921]"
+                  class="block transition rounded-lg px-4 py-2.5 text-sm duration-200 textColor"
                   :class="[
                     route.params.chapterId === String(chapter.id)
-                      ? '!titleColor bg-[#f5f2e9] dark:bg-[#2d2921] font-medium'
-                      : '',
+                      ? 'titleColor bg-[#d4c29c]/10 dark:bg-[#d4c29c]/5 font-medium'
+                      : 'hover:bg-[#d4c29c]/5 dark:hover:bg-[#d4c29c]/5',
                   ]"
                   @click.stop
                 >
