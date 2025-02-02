@@ -36,7 +36,7 @@ const links = [
       </div>
     </div>
     <!-- 分割线 -->
-    <div class="h-px bg-gray-300 dark:bg-gray-700" />
+    <div class="h-px bg-gray-300 dark:bg-gray-700" transition />
   </header>
 </template>
 
