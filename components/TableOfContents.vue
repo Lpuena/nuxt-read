@@ -1,15 +1,12 @@
 <script setup lang="ts">
+import type { Section } from '~/types/bookTypes'
 import { useStorage } from '@vueuse/core'
 
 defineProps<{
-  chapters: Chapter[]
+  sections: Section[]
   title: string
 }>()
 const isOpen = useStorage('toc-isOpen', false)
-interface Chapter {
-  id: string
-  title: string
-}
 
 const route = useRoute()
 
@@ -72,22 +69,27 @@ onUnmounted(() => {
 
         <!-- 章节列表 -->
         <div class="mt-4 flex-1 overflow-y-auto pr-2">
-          <ul class="space-y-1">
-            <li v-for="chapter in chapters" :key="chapter.id">
-              <NuxtLink
-                :to="`/book/${title}/chapter/${chapter.id}`"
-                class="block transition rounded-lg px-4 py-2.5 text-sm duration-200 hover:bg-[#f5f2e9] textColor dark:hover:bg-[#2d2921]"
-                :class="[
-                  route.params.chapterId === chapter.id
-                    ? '!titleColor bg-[#f5f2e9] dark:bg-[#2d2921] font-medium'
-                    : '',
-                ]"
-                @click.stop
-              >
-                {{ chapter.title }}
-              </NuxtLink>
-            </li>
-          </ul>
+          <div v-for="section in sections" :key="section.type" class="mb-4">
+            <h4 class="text-sm font-bold titleColor">
+              {{ section.type }}
+            </h4>
+            <ul class="space-y-1">
+              <li v-for="chapter in section.chapters" :key="chapter.id">
+                <NuxtLink
+                  :to="`/book/${title}/chapter/${chapter.id}`"
+                  class="block transition rounded-lg px-4 py-2.5 text-sm duration-200 hover:bg-[#f5f2e9] textColor dark:hover:bg-[#2d2921]"
+                  :class="[
+                    route.params.chapterId === String(chapter.id)
+                      ? '!titleColor bg-[#f5f2e9] dark:bg-[#2d2921] font-medium'
+                      : '',
+                  ]"
+                  @click.stop
+                >
+                  {{ chapter.chapterTitle }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

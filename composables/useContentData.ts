@@ -1,4 +1,4 @@
-import type { Body, Book, BookContent, Chapter } from '~/types/bookTypes'
+import type { Book, BookContent, BookDetail, Section } from '~/types/bookTypes'
 // 获取作者数据
 // export async function useAuthors() {
 //   return await queryContent('authors')
@@ -29,20 +29,21 @@ export async function useChapters(bookTitle: string, chapterId?: string) {
   const bookRes = await useAsyncData(() => queryCollection('booksDetail')
     .where('title', '=', bookTitle)
     .first())
-  const bookResult = bookRes.data.value || { meta: { chapters: [], body: {} } }
+  const bookResult = bookRes.data.value || { meta: { sections: [], body: {} } }
+  // console.log('bookResult:', bookResult)
 
-  const chapters = bookResult.meta.chapters as Chapter[]
-  const body = bookResult.meta.body as Body
+  const sections = bookResult.meta.sections as Section[]
+  const bookDetail = bookResult.meta.body as BookDetail
 
-  const bookId = body.id
+  const bookId = bookDetail.id
   // 获取章节数据
   let chapterContent = ['']
   if (chapterId) {
     chapterContent = await useChapterContent(bookId, chapterId)
   }
   return {
-    chapters,
-    body,
+    sections,
+    bookDetail,
     chapterContent,
   }
 }

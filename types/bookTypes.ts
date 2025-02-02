@@ -7,13 +7,19 @@ export interface Book {
 
 export interface Chapter {
   id: number
-  chapter: string
+  chapterTitle: string
 }
-export interface Body {
+export interface BookDetail {
   id: string
   title: string
   author: string
   description: string
+  /** 章节的分类 */
+  sections: Section[]
+}
+
+export interface Section {
+  type: string
   chapters: Chapter[]
 }
 

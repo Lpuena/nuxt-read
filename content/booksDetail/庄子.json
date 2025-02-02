@@ -2,11 +2,55 @@
   "id": "zhuangzi",
   "title": "庄子",
   "author": "庄子",
-  "chapters": [
-    { "id": 1, "chapter": "学而篇" },
-    { "id": 2, "chapter": "为政篇" },
-    { "id": 3, "chapter": "八佾篇" },
-    { "id": 4, "chapter": "里仁篇" },
-    { "id": 5, "chapter": "公冶长篇" }
+  "description": "《庄子》又名《南华经》，是战国中期庄子及其后学所著道家经文。到了汉代以后，尊庄子为南华真人，因此《庄子》亦称《南华经》。其书与《老子》《周易》合称“三玄”。《庄子》书分内、外、杂篇，原有五十二篇，乃由战国中晚期逐步流传、揉杂、附益，至西汉大致成形，然而当时流传版本，今已失传。目前所传三十三篇，已经郭象整理，篇目章节与汉代亦有不同。内篇大体可代表战国时期庄子思想核心，而外、杂篇发展则纵横百余年，参杂黄老、庄子后学形成复杂的体系。",
+  "sections": [
+    {
+      "type": "内篇",
+      "chapters": [
+        { "id": 1, "chapterTitle": "逍遥游" },
+        { "id": 2, "chapterTitle": "齐物论" },
+        { "id": 3, "chapterTitle": "养生主" },
+        { "id": 4, "chapterTitle": "人间世" },
+        { "id": 5, "chapterTitle": "德充符" },
+        { "id": 6, "chapterTitle": "大宗师" },
+        { "id": 7, "chapterTitle": "应帝王" }
+      ]
+    },
+    {
+      "type": "外篇",
+      "chapters": [
+        { "id": 8, "chapterTitle": "骈拇" },
+        { "id": 9, "chapterTitle": "马蹄" },
+        { "id": 10, "chapterTitle": "胠箧" },
+        { "id": 11, "chapterTitle": "在宥" },
+        { "id": 12, "chapterTitle": "天地" },
+        { "id": 13, "chapterTitle": "天道" },
+        { "id": 14, "chapterTitle": "天运" },
+        { "id": 15, "chapterTitle": "刻意" },
+        { "id": 16, "chapterTitle": "缮性" },
+        { "id": 17, "chapterTitle": "秋水" },
+        { "id": 18, "chapterTitle": "至乐" },
+        { "id": 19, "chapterTitle": "达生" },
+        { "id": 20, "chapterTitle": "山木" },
+        { "id": 21, "chapterTitle": "田子方" },
+        { "id": 22, "chapterTitle": "知北游" }
+      ]
+    },
+    {
+      "type": "杂篇",
+      "chapters": [
+        { "id": 23, "chapterTitle": "庚桑楚" },
+        { "id": 24, "chapterTitle": "徐无鬼" },
+        { "id": 25, "chapterTitle": "则阳" },
+        { "id": 26, "chapterTitle": "外物" },
+        { "id": 27, "chapterTitle": "寓言" },
+        { "id": 28, "chapterTitle": "让王" },
+        { "id": 29, "chapterTitle": "盗跖" },
+        { "id": 30, "chapterTitle": "说剑" },
+        { "id": 31, "chapterTitle": "渔父" },
+        { "id": 32, "chapterTitle": "列御寇" },
+        { "id": 33, "chapterTitle": "天下" }
+      ]
+    }
   ]
 }

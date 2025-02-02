@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { Chapter } from '~/types/bookTypes'
+
 const props = defineProps<{
   title: string
-  chapterId: string | number
-  chapterList: any[]
+  chapterId: string
+  chapterList: Chapter[]
 }>()
 const router = useRouter()
 function goChapter(id: number) {
@@ -37,23 +39,23 @@ onUnmounted(() => {
   <div class="mt-12 flex items-center justify-center font-serif space-x-6">
     <a
       v-if="Number(chapterId) > 1"
-      class="group inline-flex cursor-pointer items-center transition hover:text-[#8a7a7a] titleColor"
+      class="group inline-flex transition cursor-pointer items-center hover:text-[#8a7a7a] titleColor"
       @click="goChapter(-1)"
     >
       <span class="i-ph-arrow-arc-left-bold text-xl transition-transform tgc group-hover:-translate-x-1" />
-      <span class="group-hover:brcB ml-2 border-b border-transparent text-lg">上篇</span>
+      <span class="ml-2 border-b border-transparent text-lg group-hover:brcB">上卷</span>
     </a>
 
     <div class="text-sm tgc">
-      // 第{{ chapterId }}篇，共{{ chapterList.length }}篇 //
+      // 卷{{ chapterId }}，共{{ chapterList.length }}卷 //
     </div>
 
     <a
       v-if="Number(chapterId) < chapterList.length"
-      class="group inline-flex cursor-pointer items-center transition hover:text-[#8a7a7a] titleColor"
+      class="group inline-flex transition cursor-pointer items-center hover:text-[#8a7a7a] titleColor"
       @click="goChapter(1)"
     >
-      <span class="group-hover:brcB mr-2 border-b border-transparent text-lg">下篇</span>
+      <span class="mr-2 border-b border-transparent text-lg group-hover:brcB">下卷</span>
       <span class="i-ph-arrow-arc-right-bold text-xl transition-transform group-hover:translate-x-1 tgc" />
     </a>
   </div>
