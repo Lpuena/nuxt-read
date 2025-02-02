@@ -41,7 +41,7 @@ export default defineConfig({
     },
     {
       // 卡片背景
-      cardBg: 'bg-white dark:bg-[#2d2921]',
+      cardBg: 'bg-white dark:bg-[#2d2921] transition',
     },
     {
       // 边框

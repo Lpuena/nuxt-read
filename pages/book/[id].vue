@@ -35,7 +35,6 @@ function goBook(chapterId: number) {
         </h2>
         <div
           class="mb-12 rounded-lg p-8 shadow-lg cardBg"
-          transition
         >
           <p class="heti--ancient text-lg leading-relaxed textColor">
             {{ bookDetail?.description }}
@@ -46,7 +45,6 @@ function goBook(chapterId: number) {
       <!-- 目录部分 -->
       <div
         class="mb-12 brc rounded-xl p-8 cardBg"
-        transition
       >
         <h2
           class="brw mb-6 pl-3 text-2xl font-semibold font-serif titleColor"

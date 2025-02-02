@@ -25,20 +25,18 @@ const chapters = chapterList.map((item, index) => ({
 </script>
 
 <template>
-  <div class="">
-    <div class="mx-auto max-w-7xl px-4 pb-10">
-      <h1 class="mb-8 text-center text-4xl font-bold font-serif titleColor">
+  <div>
+    <TableOfContents :chapters="chapters" :title="title" />
+    <div class="mx-auto max-w-7xl px-4 pb-10" transition>
+      <h1 class="mb-8 flex items-end justify-center text-4xl font-bold font-serif titleColor">
         {{ title }}
+        <!-- 显示当前章节名称 -->
+        <p class="heti ml-2 text-2xl font-serif">
+          （{{ chapterTitle }}）
+        </p>
       </h1>
 
-      <TableOfContents :chapters="chapters" :title="title" />
-
-      <!-- 显示当前章节名称 -->
-      <div class="mb-8 text-center text-2xl font-serif titleColor">
-        {{ chapterTitle }}
-      </div>
-
-      <div class="max-w-none prose">
+      <div class="max-w-none prose" transition>
         <div class="mt-12">
           <h2 class="mb-4 text-3xl font-serif titleColor">
             章节内容
@@ -54,12 +52,13 @@ const chapters = chapterList.map((item, index) => ({
           </div>
         </div>
       </div>
+
       <!-- 添加下一章上一章按钮 -->
       <div class="mt-12 flex items-center justify-between">
         <div>
           <button
             v-if="Number(chapterId) > 1"
-            class="focus:shadow-outline-blue border border-transparent rounded-lg bg-blue-600 px-4 py-2 text-sm text-white font-medium leading-5 transition-colors duration-150 active:bg-blue-600 hover:bg-blue-700 focus:outline-none"
+            class="brc rounded-lg px-4 py-2 text-sm font-medium leading-5 transition hover:border-[#3c2f2f] cardBg hover:bg-[#f5f2e9] titleColor hover:shadow-sm focus:outline-none dark:hover:border-[#d4c29c] dark:hover:bg-[#2d2921]"
             @click="router.push(`/book/${title}/chapter/${Number(chapterId) - 1}`)"
           >
             上一章
@@ -68,7 +67,7 @@ const chapters = chapterList.map((item, index) => ({
         <div>
           <button
             v-if="Number(chapterId) < chapterList.length"
-            class="focus:shadow-outline-blue border border-transparent rounded-lg bg-blue-600 px-4 py-2 text-sm text-white font-medium leading-5 transition-colors duration-150 active:bg-blue-600 hover:bg-blue-700 focus:outline-none"
+            class="brc rounded-lg px-4 py-2 text-sm font-medium leading-5 transition hover:border-[#3c2f2f] cardBg hover:bg-[#f5f2e9] titleColor hover:shadow-sm focus:outline-none dark:hover:border-[#d4c29c] dark:hover:bg-[#2d2921]"
             @click="router.push(`/book/${title}/chapter/${Number(chapterId) + 1}`)"
           >
             下一章

@@ -22,7 +22,7 @@ function goBook(book: Book) {
     <div
       v-for="book in books"
       :key="book.title"
-      class="relative transform cursor-pointer rounded-lg px-6 py-4 shadow-sm transition-all duration-300 cardBg"
+      class="relative transform cursor-pointer rounded-lg px-6 py-4 shadow-sm cardBg"
       hover="shadow-lg scale-108 -translate-y-1"
       @click="goBook(book)"
     >
