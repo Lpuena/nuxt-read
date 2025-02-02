@@ -26,6 +26,13 @@ const chapterInfo = findChapterById(Number(chapterId))
 
 /** 共有多少章节 */
 const chapterList = bookObj.sections.flatMap(section => section.chapters)
+
+/** 给内容句首添加两个字符的空格 */
+function addEmptyLine(content: string) {
+  return `\u3000\u3000${content.replace(/^\s+/, '')}`
+}
+
+addEmptyLine('hello world')
 </script>
 
 <template>
@@ -51,7 +58,7 @@ const chapterList = bookObj.sections.flatMap(section => section.chapters)
               :key="index"
               class="heti--ancient mb-4 text-lg textColor"
             >
-              {{ sentence }}
+              {{ addEmptyLine(sentence) }}
             </div>
           </div>
         </div>
