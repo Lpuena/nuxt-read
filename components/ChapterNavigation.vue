@@ -41,8 +41,11 @@ onUnmounted(() => {
 <template>
   <div class="mt-12 flex items-center justify-center font-serif space-x-6">
     <a
-      v-if="Number(chapterId) > 1"
-      class="group inline-flex transition cursor-pointer items-center hover:text-[#8a7a7a] titleColor"
+      class="group inline-flex transition items-center hover:text-[#8a7a7a] titleColor"
+      :class="{
+        'invisible pointer-events-none': Number(chapterId) <= 1,
+        'cursor-pointer': Number(chapterId) > 1,
+      }"
       @click="goChapter(-1)"
     >
       <span class="i-ph-arrow-arc-left-bold text-xl transition-transform tgc group-hover:-translate-x-1" />
@@ -58,8 +61,11 @@ onUnmounted(() => {
     </div>
 
     <a
-      v-if="Number(chapterId) < chapterList.length"
-      class="group inline-flex transition cursor-pointer items-center hover:text-[#8a7a7a] titleColor"
+      class="group inline-flex transition items-center hover:text-[#8a7a7a] titleColor"
+      :class="{
+        'invisible pointer-events-none': Number(chapterId) >= chapterList.length,
+        'cursor-pointer': Number(chapterId) < chapterList.length,
+      }"
       @click="goChapter(1)"
     >
       <span class="mr-2 border-b border-transparent text-lg group-hover:brcB">下卷</span>
