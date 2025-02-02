@@ -54,26 +54,7 @@ const chapters = chapterList.map((item, index) => ({
       </div>
 
       <!-- 添加下一章上一章按钮 -->
-      <div class="mt-12 flex items-center justify-between">
-        <div>
-          <button
-            v-if="Number(chapterId) > 1"
-            class="brc rounded-lg px-4 py-2 text-sm font-medium leading-5 transition hover:border-[#3c2f2f] cardBg hover:bg-[#f5f2e9] titleColor hover:shadow-sm focus:outline-none dark:hover:border-[#d4c29c] dark:hover:bg-[#2d2921]"
-            @click="router.push(`/book/${title}/chapter/${Number(chapterId) - 1}`)"
-          >
-            上一章
-          </button>
-        </div>
-        <div>
-          <button
-            v-if="Number(chapterId) < chapterList.length"
-            class="brc rounded-lg px-4 py-2 text-sm font-medium leading-5 transition hover:border-[#3c2f2f] cardBg hover:bg-[#f5f2e9] titleColor hover:shadow-sm focus:outline-none dark:hover:border-[#d4c29c] dark:hover:bg-[#2d2921]"
-            @click="router.push(`/book/${title}/chapter/${Number(chapterId) + 1}`)"
-          >
-            下一章
-          </button>
-        </div>
-      </div>
+      <ChapterNavigation :title="title" :chapter-list="chapterList" :chapter-id="chapterId" />
     </div>
   </div>
 </template>
