@@ -40,8 +40,9 @@ onUnmounted(() => {
     <!-- 触发按钮 -->
     <button
       id="toc-btn"
-      class="fixed left-0 top-1/2 z-50 flex transition items-center gap-2 rounded-r-xl px-3 py-4 shadow-lg duration-300 -translate-y-1/2 cardBg brc hover:border-[#d4c29c] hover:shadow-xl"
+      class="fixed left-0 top-1/2 z-50 flex transition items-center gap-2 rounded-r-xl px-3 py-4 shadow-lg duration-300 -translate-y-1/2 cardBg brc"
       :class="{ 'opacity-0': isOpen }"
+      hover="border-[#d4c29c] shadow-xl"
       @click="toggleOpen"
     >
       <div class="i-carbon-list text-lg titleColor" />
