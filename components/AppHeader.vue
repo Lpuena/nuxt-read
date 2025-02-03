@@ -31,6 +31,7 @@ const links = [
 
         <!-- Right section -->
         <div class="flex items-center space-x-4">
+          <GithubCom />
           <DarkToggle />
         </div>
       </div>
