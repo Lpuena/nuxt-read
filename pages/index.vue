@@ -7,8 +7,7 @@
 /** 获取展示书籍数据 */
 const books = await useBooks()
 
-// const searchResult = await useGlobalSearch('齐物论')
-// console.log('searchResult', searchResult)
+const { books: matchBooks, contents, structures } = await useGlobalSearch('齐物论')
 </script>
 
 <template>

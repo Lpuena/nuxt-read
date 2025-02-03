@@ -132,8 +132,11 @@ export async function useGlobalSearch(keyword: string) {
   console.log('matchedContents:', matchedContents)
 
   return {
+    /** 匹配到的书籍 */
     books: matchedBooks,
+    /** 匹配到的章节标题 */
     structures: matchedStructures,
+    /** 匹配到的章节内容 */
     contents: matchedContents,
   }
 }
