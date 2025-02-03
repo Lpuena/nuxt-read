@@ -11,14 +11,33 @@ export default defineContentConfig({
         url: z.string(),
       }),
     }),
+    docs: defineCollection({
+      source: '**',
+      type: 'page',
+    }),
+    // books: defineCollection({
+    //   type: 'data',
+    //   source: 'books.json',
+    //   schema: z.object({
+    //     title: z.string(),
+    //     author: z.string(),
+    //     description: z.string(),
+    //     year: z.string(),
+    //   }),
+    // }),
     books: defineCollection({
       type: 'data',
       source: 'books.json',
       schema: z.object({
-        title: z.string(),
-        author: z.string(),
-        description: z.string(),
-        year: z.string(),
+        books: z.array(
+          z.object({
+            title: z.string(),
+            author: z.string(),
+            description: z.string(),
+            year: z.string(),
+          }),
+        ),
+        path: z.string(), // 添加 path 字段定义
       }),
     }),
     booksDetail: defineCollection({

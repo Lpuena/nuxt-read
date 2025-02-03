@@ -6,6 +6,9 @@
 
 /** 获取展示书籍数据 */
 const books = await useBooks()
+
+// const searchResult = await useSearch('子曰')
+// console.log('123', searchResult)
 </script>
 
 <template>
