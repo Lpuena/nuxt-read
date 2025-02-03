@@ -1,4 +1,4 @@
-import type { Book, BookContent, BookDetail, Section } from '~/types/bookTypes'
+import type { Book, BookDetail } from '~/types/bookTypes'
 // 获取作者数据
 // export async function useAuthors() {
 //   return await queryContent('authors')
@@ -21,7 +21,6 @@ export async function useBooks() {
   // return bookRes.meta.books as Book[]
 }
 
-/** 获取章节数据 */
 // export async function useChapters(bookTitle: string, chapterId?: string) {
 //   const bookRes = await useAsyncData(() => queryCollection('booksDetail')
 //     .where('title', '=', bookTitle)
@@ -44,20 +43,21 @@ export async function useBooks() {
 //     chapterContent,
 //   }
 // }
-
+/** 获取章节标题(以及章节内容-可选) */
 export async function useChapters(bookTitle: string, chapterId?: string) {
-  const bookRes = await queryCollection('booksDetail')
+  const bookRes = await queryCollection('booksSections')
     .where('title', '=', bookTitle)
     .first()
 
   const bookResult = bookRes || { meta: { sections: [], body: {} } }
   // console.log('bookResult:', bookResult)
 
-  const sections = bookResult.meta.sections as Section[]
+  const sections = bookRes.sections
+
   const bookDetail = bookResult.meta.body as BookDetail
 
   const bookId = bookDetail.id
-  // 获取章节数据
+  // 获取章节详细内容
   let chapterContent = ['']
   if (chapterId) {
     chapterContent = await useChapterContent(bookId, chapterId)
@@ -76,42 +76,64 @@ export async function useChapterContent(bookId: string, chapterId: string) {
     .where('title', '=', name)
     .first()
 
-  const chapter = bookResult.meta.content as BookContent
-  const chapterContent = chapter[chapterId]
+  const chapters = bookResult.content
+
+  // 选择 chapter 中chapterId 对应的章节内容
+  const chapter = chapters.find(chapter => chapter.chapterId === chapterId)
+  const chapterContent = chapter?.chapterContent || []
   return chapterContent
 }
 
-/** 搜索书籍 */
-// export async function useSearchBooks(keyword: string) {
-//   const { data: sections } = await useAsyncData('search', () => {
-//     return queryCollectionSearchSections('docs')
-//   })
-//   return sections
-// }
+/** 获取所有章节名称信息 */
+async function useAllChapters() {
+  const bookResult = await queryCollection('booksSections')
+    .all()
+  return bookResult
+}
+/** 获取所有章节具体内容 */
+async function useAllChapterContent() {
+  const bookResult = await queryCollection('booksDetail')
+    .all()
+  return bookResult
+}
 
-/** 搜索书籍和章节 */
-// export async function useSearch(query: string): Promise<{ books: Book[], sections: Section[] }> {
-//   const books = await useBooks()
-//   const allSections: Section[] = []
+/** 搜索 */
+export async function useGlobalSearch(keyword: string) {
+  // 1. 搜索书籍元数据
+  const books = await useBooks()
+  console.log('books:', books)
 
-//   const filteredBooks = new Set<Book>()
+  const matchedBooks = books.filter(book =>
+    Object.values(book).some(value =>
+      String(value).toLowerCase().includes(keyword.toLowerCase()),
+    ),
+  )
+  console.log('matchedBooks:', matchedBooks)
 
-//   // 遍历所有书籍并收集章节信息
-//   for (const book of books) {
-//     const { sections, chapterContent } = await useChapters(book.title)
-//     allSections.push(...sections)
+  // 2. 搜索章节标题
+  const structures = await useAllChapters()
+  console.log('structures:', structures)
 
-//     // 将章节内容展平为字符串以便搜索
-//     const flattenedChapterContent = Object.values(chapterContent).join(' ').toLowerCase()
-//     console.log('allSections:', allSections)
+  const matchedStructures = structures.filter(structure =>
+    Object.values(structure.sections.map(item => item.chapters.map(chapter => chapter.chapterTitle))).some(value =>
+      String(value).toLowerCase().includes(keyword.toLowerCase()),
+    ),
+  )
+  console.log('matchedSections:', matchedStructures)
 
-//     console.log('flattenedChapterContent:', flattenedChapterContent)
+  // TODO: 3. 搜索章节内容
+  const contents = await useAllChapterContent()
+  console.log('contents:', contents)
+  const matchedContents = contents.filter(content =>
+    Object.values(content.content.map(item => item.chapterContent)).some(value =>
+      String(value).toLowerCase().includes(keyword.toLowerCase()),
+    ),
+  )
+  console.log('matchedContents:', matchedContents)
 
-//     if (flattenedChapterContent.includes(query.toLowerCase())) {
-//       // 如果章节内容匹配，则将该书添加到结果中
-//       filteredBooks.add(book)
-//     }
-//   }
-
-//   return { books: filteredBooks, sections: '123' }
-// }
+  return {
+    books: matchedBooks,
+    structures: matchedStructures,
+    contents: matchedContents,
+  }
+}

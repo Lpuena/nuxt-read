@@ -40,6 +40,27 @@ export default defineContentConfig({
         path: z.string(), // 添加 path 字段定义
       }),
     }),
+    booksSections: defineCollection({
+      type: 'data',
+      source: 'booksSections/**.json',
+      schema: z.object({
+        id: z.string(),
+        title: z.string(),
+        author: z.string(),
+        description: z.string(),
+        sections: z.array(
+          z.object({
+            type: z.string(),
+            chapters: z.array(
+              z.object({
+                id: z.number(),
+                chapterTitle: z.string(),
+              }),
+            ),
+          }),
+        ),
+      }),
+    }),
     booksDetail: defineCollection({
       type: 'data',
       source: 'booksDetail/**.json',
@@ -47,6 +68,14 @@ export default defineContentConfig({
         id: z.string(),
         title: z.string(),
         author: z.string(),
+        content: z.array(
+          z.object(
+            {
+              chapterId: z.string(),
+              chapterContent: z.array(z.string()),
+            },
+          ),
+        ),
       }),
     }),
   },

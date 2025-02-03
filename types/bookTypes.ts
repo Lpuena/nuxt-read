@@ -1,5 +1,6 @@
 export interface Book {
   title: string
+  pinyin: string
   description: string
   author: string
   year: string
@@ -23,6 +24,10 @@ export interface Section {
   chapters: Chapter[]
 }
 
+/** 当前章节的详细内容 */
 export interface BookContent {
-  [chapterId: string]: string[] // chapterId 是字符串，内容是字符串数组
+  id: string
+  title: string
+  author: string
+  content: { chapterId: string, chapterContent: string[] }[]
 };
