@@ -3,10 +3,14 @@ import type { BookDetail } from '~/types/bookTypes'
 
 defineProps<{
   results: {
-
     contents: SearchResult<BookDetail>[]
   }
 }>()
+
+const router = useRouter()
+function goToDetail(bookTitle: string, chapterId: string) {
+  router.push(`/book/${bookTitle}/chapter/${chapterId}`)
+}
 </script>
 
 <template>
@@ -32,18 +36,13 @@ defineProps<{
             v-for="(match, idx) in result.matches"
             :key="idx"
             class="brL pl-4 transition-all hover:border-opacity-70 hover:bg-gray-50 dark:hover:bg-[#3a3429]"
+            @click="goToDetail(result.item.bookName, String(match.chapterId))"
           >
             <p class="mb-1 flex justify-between text-sm tgc">
               <span>第 {{ match.chapterId }} 章 · 第 {{ Number(match.paragraphIndex) + 1 }} 段</span>
-              <router-link
-                :to="`/book/${result.item.id}/${match.chapterId}?paragraph=${match.paragraphIndex}`"
-                class="text-xs text-blue-500 hover:underline"
-              >
-                跳转到相关段落 →
-              </router-link>
             </p>
             <p
-              class="line-clamp-3 leading-relaxed textColor"
+              class="line-clamp-3 pb-2 leading-relaxed textColor"
               v-html="useHighLight(match.excerpt, match.indices)"
             />
           </div>
