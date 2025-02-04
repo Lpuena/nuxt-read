@@ -7,7 +7,25 @@
 /** 获取展示书籍数据 */
 const books = await useBooks()
 
-const { books: matchBooks, contents, structures } = await useGlobalSearch('齐物论')
+const results = await useGlobalSearch('学而篇')
+console.log(results)
+// TODO: 添加搜索到的书籍和内容的路由
+
+// // 处理书籍结果
+// results.books.forEach(({ item, matches }) => {
+//   console.log(`匹配书籍：《${item.title}》`)
+//   matches.forEach((m) => {
+//     console.log(`- 在字段 [${m.field}] 发现匹配：${m.excerpt}`)
+//   })
+// })
+
+// // 处理章节内容结果
+// results.contents.forEach(({ item, matches }) => {
+//   console.log(`书籍《${item.bookName}》发现内容匹配：`)
+//   matches.forEach((m) => {
+//     console.log(`- 章节 ${m.chapterId} 第${m.paragraphIndex! + 1}段：${m.excerpt}`)
+//   })
+// })
 </script>
 
 <template>
