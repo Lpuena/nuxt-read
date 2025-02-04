@@ -2,6 +2,7 @@
 const links = [
   { name: '主页', path: '/' },
   { name: '关于', path: '/about' },
+  { name: '搜索', path: '/search' },
 ]
 </script>
 
@@ -23,7 +24,7 @@ const links = [
             :key="link.name"
             :to="link.path"
             class="text-sm text-gray-500 font-medium transition-colors dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100"
+            active-class="text-gray-900 dark:text-white/80"
           >
             {{ link.name }}
           </NuxtLink>

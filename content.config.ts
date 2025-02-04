@@ -35,14 +35,15 @@ export default defineContentConfig({
             author: z.string(),
             description: z.string(),
             year: z.string(),
+            Pinyin: z.string(),
           }),
         ),
         path: z.string(), // 添加 path 字段定义
       }),
     }),
-    booksSections: defineCollection({
+    bookSections: defineCollection({
       type: 'data',
-      source: 'booksSections/**.json',
+      source: 'bookSections/**.json',
       schema: z.object({
         id: z.string(),
         title: z.string(),
@@ -61,12 +62,13 @@ export default defineContentConfig({
         ),
       }),
     }),
-    booksDetail: defineCollection({
+    bookDetail: defineCollection({
       type: 'data',
-      source: 'booksDetail/**.json',
+      source: 'bookDetail/**.json',
       schema: z.object({
         id: z.string(),
         title: z.string(),
+        bookName: z.string(),
         author: z.string(),
         content: z.array(
           z.object(

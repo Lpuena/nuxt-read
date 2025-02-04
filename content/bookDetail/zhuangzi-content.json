@@ -1,6 +1,7 @@
 {
   "id": "zhuangzi-chapters",
   "title": "zhuangzi-content",
+  "bookName": "庄子",
   "author": "庄子",
   "content": [{
     "chapterId": "1",
