@@ -32,7 +32,29 @@ function addEmptyLine(content: string) {
   return `\u3000\u3000${content.replace(/^\s+/, '')}`
 }
 
-addEmptyLine('hello world')
+function sanitizeInput(input: string): string {
+  // 去除不可见的控制字符
+  return input.replace(/[\x00-\x1F\x7F-\x9F]/g, '')
+}
+
+function renderPinYinWithRuby(input: string): string {
+  const sanitizedInput = sanitizeInput(input)
+  const pattern = /([\u4E00-\u9FA5])（(.*?)）/g // 匹配一个中文字符和其对应的拼音
+  let result = sanitizedInput
+
+  // 使用正则表达式替换匹配到的部分
+  result = sanitizedInput.replace(pattern, (match, hanzi, pinyin) => {
+    // 将汉字和拼音包装为 <ruby> 标签
+    return `<ruby><rb>${sanitizeInput(hanzi)}</rb><rt>${sanitizeInput(pinyin)}</rt></ruby>`
+  })
+
+  // 将连续的 <ruby> 标签包裹到 <u> 标签中
+  result = result.replace(/(<ruby>.*?<\/ruby>)+/g, (rubyGroup) => {
+    return `<u>${rubyGroup}</u>`
+  })
+
+  return result
+}
 </script>
 
 <template>
@@ -56,10 +78,9 @@ addEmptyLine('hello world')
             <div
               v-for="(sentence, index) in bookObj?.chapterContent"
               :key="index"
-              class="heti--ancient mb-4 text-lg textColor"
-            >
-              {{ addEmptyLine(sentence) }}
-            </div>
+              class="heti heti--ancient heti--annotation mb-4 min-w-full text-lg textColor"
+              v-html="renderPinYinWithRuby(addEmptyLine(sentence))"
+            />
           </div>
         </div>
       </div>
