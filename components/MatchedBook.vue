@@ -34,21 +34,13 @@ function goToBook(bookTitle: string) {
           《{{ result.item.title }}》
         </p>
         <div class="space-y-3">
-          <div
-            v-for="(match, idx) in result.matches"
-            :key="idx"
-            class="rounded-md bg-yellow-50 p-3 text-sm dark:bg-[#3a3429] textColor2"
-          >
-            <div class="mb-2 flex items-center">
-              <span class="mr-2 tgc">匹配字段：</span>
-              <span class="rounded bg-yellow-100 px-2 py-1 text-xs dark:bg-[#4d443a] textColor">
-                {{ match.field }}
-              </span>
-            </div>
-            <p
-              class="line-clamp-3 leading-relaxed"
-              v-html="useHighLight(match.excerpt, match.indices)"
-            />
+          <p class="textColor2">
+            {{ result.item.description }}
+          </p>
+          <div class="flex items-center justify-end italic">
+            <p class="text-sm text-gray-400/80 dark:text-gray-4/50">
+              作者： {{ result.item.author }}
+            </p>
           </div>
         </div>
       </div>

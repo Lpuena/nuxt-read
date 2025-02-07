@@ -15,16 +15,6 @@ export default defineContentConfig({
       source: '**',
       type: 'page',
     }),
-    // books: defineCollection({
-    //   type: 'data',
-    //   source: 'books.json',
-    //   schema: z.object({
-    //     title: z.string(),
-    //     author: z.string(),
-    //     description: z.string(),
-    //     year: z.string(),
-    //   }),
-    // }),
     books: defineCollection({
       type: 'data',
       source: 'books.json',
@@ -34,6 +24,7 @@ export default defineContentConfig({
             title: z.string(),
             author: z.string(),
             description: z.string(),
+            describeInDetail: z.string(),
             year: z.string(),
             Pinyin: z.string(),
           }),
