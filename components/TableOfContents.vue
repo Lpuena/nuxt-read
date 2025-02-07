@@ -40,20 +40,22 @@ onUnmounted(() => {
     <!-- 触发按钮 - 更柔和的过渡效果 -->
     <button
       id="toc-btn"
-      class="fixed left-0 top-1/2 z-50 flex transition items-center gap-2 rounded-r-xl px-3.5 py-4 shadow-lg -translate-y-1/2 cardBg brc"
+      class="fixed left-0 top-1/2 z-50 flex transition items-center gap-2 rounded-r-xl px-2.5 py-3 shadow-lg -translate-y-1/2 cardBg brc"
       :class="{ 'opacity-0': isOpen }"
       hover="border-[#d4c29c] shadow-xl bg-opacity-95 dark:bg-opacity-95"
       @click="toggleOpen"
     >
-      <div class="i-carbon-list text-lg textColor2" />
+      <div class="i-carbon-list text-2xl textColor2" />
     </button>
 
     <!-- 目录面板 - 优化视觉层次 -->
     <nav
       id="toc-nav"
-      class="fixed bottom-10 left-4 top-18 z-50 w-72 transform rounded-xl shadow-xl backdrop-blur-sm transition-all duration-300 ease-out cardBg brc hover:shadow-2xl"
+      transition
+      hover="shadow-xl"
+      class="fixed bottom-10 left-4 top-18 z-50 w-72 rounded-xl shadow-xl backdrop-blur-sm cardBg brc"
       :class="[
-        isOpen ? 'translate-x-0' : '-translate-x-[120%]',
+        isOpen ? 'translate-x-0' : '-translate-x-[120%] opacity-10',
       ]"
     >
       <div class="h-full flex flex-col p-6">
