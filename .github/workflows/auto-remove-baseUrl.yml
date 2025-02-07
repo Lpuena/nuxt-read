@@ -1,0 +1,32 @@
+name: Auto Remove BaseURL
+
+on:
+  push:
+    branches: [main] # 监听 main 分支的推送
+
+jobs:
+  remove-baseurl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Remove baseURL from nuxt.config.ts
+        run: |
+          # 使用 sed 命令移除 app.baseURL 配置
+          sed -i '/baseURL: \'/nuxt-read\/\'\,/},/d' nuxt.config.ts
+
+          # 同时也可以用 Node.js 脚本处理，更安全、更精确
+          # node -e "const fs = require('fs'); const content = fs.readFileSync('nuxt.config.ts', 'utf8'); fs.writeFileSync('nuxt.config.ts', content.replace(/app: {[\s\S]*?baseURL: '[^']*',/g, 'app: {\n  // baseURL: \'/nuxt-read/\',\n'))"
+
+      - name: Checkout the target branch
+        run: |
+          git checkout no-base-url-branch
+
+      - name: Add and commit the changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add nuxt.config.ts
+          git commit -m "Automatically remove baseURL from nuxt.config.ts"
+          git push origin no-base-url-branch
