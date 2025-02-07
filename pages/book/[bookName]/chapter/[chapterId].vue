@@ -34,6 +34,7 @@ function addEmptyLine(content: string) {
 
 function sanitizeInput(input: string): string {
   // 去除不可见的控制字符
+  // eslint-disable-next-line no-control-regex
   return input.replace(/[\x00-\x1F\x7F-\x9F]/g, '')
 }
 
