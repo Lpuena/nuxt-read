@@ -53,7 +53,7 @@ onUnmounted(() => {
     </a>
 
     <div
-      class="cursor-pointer text-sm tgc"
+      class="cursor-pointer text-sm font-mono tgc"
       hover="textColor2 brcB"
       @click="goChapterList"
     >
