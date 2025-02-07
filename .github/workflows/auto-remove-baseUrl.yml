@@ -1,41 +1,48 @@
-name: Auto Remove BaseURL
+name: Auto Sync and Remove BaseURL
 
 on:
   push:
-    branches: [ main ] # 监听 main 分支的推送
+    branches: [ main ]
 
 jobs:
-  remove-baseurl:
+  sync-and-remove-baseurl:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
     steps:
-      - name: Checkout the repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}  # 使用个人访问令牌
 
-      - name: Remove baseURL from nuxt.config.ts
+      - name: Configure Git
         run: |
-          sed -i -e "/baseURL: '\/nuxt-read\/',/d" nuxt.config.ts
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Check if target branch exists
-        id: check_branch
+      - name: Sync main branch to no-base-url-branch
         run: |
-          if git show-ref --quiet refs/heads/no-base-url-branch; then
-            echo "Branch exists"
+          # 检查远程分支是否存在
+          if git ls-remote --heads origin no-base-url-branch | grep -q 'no-base-url-branch'; then
+            git checkout no-base-url-branch
+            git pull origin main
           else
-            echo "Branch does not exist"
-            git checkout -b no-base-url-branch # 创建新分支
+            git checkout -b no-base-url-branch
           fi
 
-      - name: Checkout the target branch
+      - name: Modify nuxt.config.ts
         run: |
-          git checkout no-base-url-branch
+          # 使用更可靠的方式修改配置文件
+          sed -i '/baseURL:/c\    // baseURL: removed for this branch,' nuxt.config.ts
 
-      - name: Add and commit the changes
+      - name: Commit and push changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
           git add nuxt.config.ts
-          git commit -m "Automatically remove baseURL from nuxt.config.ts"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git no-base-url-branch
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: sync from main and remove baseURL"
+            git push origin no-base-url-branch
+          fi
