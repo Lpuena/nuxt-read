@@ -11,11 +11,11 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 确保获取所有分支
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Remove baseURL from nuxt.config.ts
         run: |
-          # 使用 sed 命令移除 app.baseURL 配置
           sed -i -e "/baseURL: '\/nuxt-read\/',/d" nuxt.config.ts
 
       - name: Check if target branch exists
@@ -38,4 +38,4 @@ jobs:
           git config user.email "github-actions@github.com"
           git add nuxt.config.ts
           git commit -m "Automatically remove baseURL from nuxt.config.ts"
-          git push origin no-base-url-branch
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Lpuena/nuxt-read.git no-base-url-branch
