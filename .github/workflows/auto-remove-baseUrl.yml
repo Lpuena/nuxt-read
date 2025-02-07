@@ -38,4 +38,4 @@ jobs:
           git config user.email "github-actions@github.com"
           git add nuxt.config.ts
           git commit -m "Automatically remove baseURL from nuxt.config.ts"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Lpuena/nuxt-read.git no-base-url-branch
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git no-base-url-branch
