@@ -1,5 +1,8 @@
 <script setup>
 // Your page logic here
+useHead({
+  title: 'About Us',
+})
 </script>
 
 <template>

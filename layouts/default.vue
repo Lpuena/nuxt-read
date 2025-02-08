@@ -2,7 +2,7 @@
 const _route = useRoute()
 useHead({
   titleTemplate: (title) => {
-    return title ? `${title} - Nuxt App` : 'Nuxt App'
+    return title ? `${title} - 读书` : '读书'
   },
 })
 </script>

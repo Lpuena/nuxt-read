@@ -3,6 +3,10 @@ import type { Book, BookDetail, BookSections } from '~/types/bookTypes'
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
+useHead({
+  title: '搜索',
+})
+
 const route = useRoute()
 const router = useRouter()
 const searchTerm = ref(route.query.q as string || '')
@@ -28,7 +32,7 @@ watch(
     searchTerm.value = term // 同步搜索词到输入框
     if (term) {
       results.value = await useGlobalSearch(term) // 重新获取数据
-      console.log('匹配到的内容', results.value)
+      // console.log('匹配到的内容', results.value)
     }
     else {
       results.value = { books: [], contents: [], structures: [] } // 清空结果

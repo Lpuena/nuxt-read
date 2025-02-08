@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const route = useRoute()
-
 const title = route.params.bookName as string
 const chapterId = route.params.chapterId as string
 
@@ -56,6 +55,10 @@ function renderPinYinWithRuby(input: string): string {
 
   return result
 }
+
+useHead({
+  title: `${title} - ${chapterInfo?.chapter}`,
+})
 </script>
 
 <template>

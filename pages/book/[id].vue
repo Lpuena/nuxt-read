@@ -2,6 +2,10 @@
 const route = useRoute()
 const title = route.params.id as string
 
+useHead({
+  title: `${title}`,
+})
+
 const bookObj = await useChapters(title)
 
 const bookDetail = bookObj.bookDetail
