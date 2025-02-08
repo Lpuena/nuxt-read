@@ -17,6 +17,10 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: ['/'],
     },
+    output: {
+      dir: 'dist', // 设置输出目录为 dist
+      publicDir: 'dist', // 设置公共目录为 dist
+    },
   },
   eslint: {
     config: {
