@@ -13,14 +13,6 @@ export default defineNuxtConfig({
   ],
   nitro: {
     preset: 'static', // 添加静态站点模式
-    prerender: {
-      crawlLinks: true,
-      routes: ['/'],
-    },
-    output: {
-      dir: 'dist', // 设置输出目录为 dist
-      publicDir: 'dist', // 设置公共目录为 dist
-    },
   },
   eslint: {
     config: {
