@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     fallback: 'light',
   },
   app: {
-    baseURL: '/nuxt-read/',
+    // baseURL: removed for this branch,
     head: {
       viewport: 'width=device-width,initial-scale=1',
       meta: [
