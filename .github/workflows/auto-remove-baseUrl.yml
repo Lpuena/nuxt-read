@@ -21,28 +21,20 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config pull.rebase false  # 设置合并策略为 merge
 
       - name: Sync main branch to no-base-url-branch
         run: |
-          if git ls-remote --heads origin no-base-url-branch | grep -q 'no-base-url-branch'; then
-            git checkout no-base-url-branch
-            git pull origin main --no-rebase  # 使用 merge 策略
-          else
-            git checkout -b no-base-url-branch
-            git pull origin main --no-rebase  # 使用 merge 策略
-          fi
-
-      - name: Modify nuxt.config.ts
-        run: |
+          # 强制创建/更新 no-base-url-branch 为 main 的副本
+          git checkout main
+          git branch -D no-base-url-branch || true
+          git checkout -b no-base-url-branch
+          
+          # 修改配置文件
           sed -i '/baseURL:/c\    // baseURL: removed for this branch,' nuxt.config.ts
-
-      - name: Commit and push changes
-        run: |
+          
+          # 提交更改
           git add nuxt.config.ts
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: sync from main and remove baseURL"
-            git push origin no-base-url-branch
-          fi
+          git commit -m "chore: sync from main and remove baseURL"
+          
+          # 强制推送更新
+          git push -f origin no-base-url-branch
