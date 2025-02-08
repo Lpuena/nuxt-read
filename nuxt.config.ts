@@ -13,6 +13,10 @@ export default defineNuxtConfig({
   ],
   nitro: {
     preset: 'static', // 添加静态站点模式
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
   },
   eslint: {
     config: {
