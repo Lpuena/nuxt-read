@@ -11,6 +11,9 @@ export default defineNuxtConfig({
     '@unocss/reset/tailwind.css',
     'heti/umd/heti.min.css',
   ],
+  nitro: {
+    preset: 'static',
+  },
   eslint: {
     config: {
       standalone: false,
@@ -22,7 +25,7 @@ export default defineNuxtConfig({
     fallback: 'light',
   },
   app: {
-    baseURL: '/nuxt-read/',
+
     head: {
       viewport: 'width=device-width,initial-scale=1',
       meta: [
