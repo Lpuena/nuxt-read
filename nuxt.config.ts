@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     'heti/umd/heti.min.css',
   ],
   nitro: {
-    preset: 'static',
+    preset: 'static', // 添加静态站点模式
   },
   eslint: {
     config: {
